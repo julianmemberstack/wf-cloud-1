@@ -1,57 +1,71 @@
 "use client";
 
-import { Section, Block, Link } from "../../devlink/_Builtin";
+import { Section, Block, Link, Container } from "../../devlink/_Builtin";
+import { Navbar } from "../../devlink/Navbar";
+import { Footer } from "../../devlink/Footer";
 
 export default function Home() {
   return (
-    <Section
-      tag="section"
-      style={{
-        minHeight: "100vh",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-    >
-      <Block tag="div" className="container">
-        <Block
-          tag="div"
-          className="hero-split"
-          style={{
-            textAlign: "center",
-            maxWidth: "600px",
-            margin: "0 auto",
-          }}
-        >
-          <h1
-            className="margin-bottom-24px"
+    <>
+      <Navbar 
+        navbarLinkFeatures="Hello"
+        navbarLinkProducts="Webflow"
+        navbarLinkResources="Cloud"
+        navbarLinkContact=""
+      />
+      
+      <Section
+        tag="section"
+        className="margin-bottom-24px"
+        style={{
+          minHeight: "100vh",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <Container>
+          <Block
+            tag="div"
+            className="hero-split"
             style={{
-              fontSize: "2.5rem",
-              fontWeight: 700,
-              background: "linear-gradient(83.21deg, #3245ff 0%, #bc52ee 100%)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text",
+              textAlign: "center",
+              maxWidth: "600px",
+              margin: "0 auto",
             }}
           >
-            Welcome to Webflow Cloud
-          </h1>
-          <Block tag="p" className="margin-bottom-24px">
-            This is a simple test using Basic components with enhanced styling.
-          </Block>
-          <div>
-            <Link
-              button={true}
-              options={{
-                href: "#",
+            <h1
+              className="margin-bottom-24px"
+              style={{
+                fontSize: "2.5rem",
+                fontWeight: 700,
+                background: "linear-gradient(83.21deg, #3245ff 0%, #bc52ee 100%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
               }}
-              className="button-primary"
             >
-              Get Started
-            </Link>
-          </div>
-        </Block>
-      </Block>
-    </Section>
+              Welcome to Webflow Cloud
+            </h1>
+            <Block tag="p" className="margin-bottom-24px">
+              This is a simple test using Basic components with enhanced styling.
+            </Block>
+            <div>
+              <Link
+                button={true}
+                options={{
+                  href: "#",
+                }}
+                className="button-primary"
+              >
+                Get Started
+              </Link>
+            </div>
+          </Block>
+        </Container>
+      </Section>
+      
+      <Footer />
+    </>
   );
 }
