@@ -39,10 +39,7 @@ export default function Home() {
               style={{
                 fontSize: "2.5rem",
                 fontWeight: 700,
-                background: "linear-gradient(83.21deg, #3245ff 0%, #bc52ee 100%)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
+                color: "#3245ff",
               }}
             >
               🎉 Your Webflow Cloud App is Live!
