@@ -45,10 +45,10 @@ export default function Home() {
                 backgroundClip: "text",
               }}
             >
-              Welcome to Webflow Cloud
+              🎉 Your Webflow Cloud App is Live!
             </h1>
             <Block tag="p" className="margin-bottom-24px">
-              This is a simple test using Basic components with enhanced styling.
+              This page content is located in `src/app/page.tsx`. You can edit this file to customize your homepage content, styling, and layout.
             </Block>
             <div>
               <Link
@@ -58,7 +58,7 @@ export default function Home() {
                 }}
                 className="button-primary"
               >
-                Get Started
+                Explore Features
               </Link>
             </div>
           </Block>
