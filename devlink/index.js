@@ -9,7 +9,5 @@ export * from "./devlinkContext";
 export * from "./interactions";
 export * from "./utils";
 export * from "./devlink";
+export * from "./ButtonPrimary";
 export * from "./DevLinkProvider";
-export * from "./Footer";
-export * from "./LocaleDropdown";
-export * from "./Navbar";

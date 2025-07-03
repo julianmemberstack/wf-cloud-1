@@ -603,6 +603,7 @@ h5 {
   margin-top: 10px;
 }
 h6 {
+  font-family: Satoshi;
   font-size: 12px;
   line-height: 18px;
   margin-top: 10px;
@@ -2179,6 +2180,7 @@ textarea.w-select {
   --gray-500: #757575;
   --gray-800: #222;
   --primary: #ffcc11;
+  --brand-blue: hsla(223, 100.00%, 60.44%, 1.00);
   --primary-2: #ffcc11;
   --default-font: Inter, sans-serif;
   --default-padding: 50px;
@@ -2188,19 +2190,17 @@ textarea.w-select {
 }
 
 body {
-  background-color: hsla(0, 0.00%, 0.00%, 1.00);
   font-family: Inter;
-  color: hsla(0, 0.00%, 100.00%, 1.00);
+  color: hsla(0, 0.00%, 0.00%, 1.00);
   font-size: 16px;
   line-height: 20px;
 }
 
 h1 {
   margin-top: 0px;
-  margin-bottom: 0.2em;
+  margin-bottom: 0px;
 
   font-family: Satoshi;
-  color: hsla(93.57798165137613, 0.00%, 100.00%, 1.00);
   font-size: 6.6rem;
   line-height: 1;
   font-weight: 500;
@@ -2221,6 +2221,7 @@ h2 {
 h3 {
   margin-top: 20px;
   margin-bottom: 10px;
+  font-family: Satoshi;
   font-size: 36px;
   line-height: 1.1;
   font-weight: 500;
@@ -2239,6 +2240,7 @@ h4 {
 h5 {
   margin-top: 10px;
   margin-bottom: 10px;
+  font-family: Satoshi;
   font-size: 16px;
   line-height: 1.3;
   font-weight: 500;
@@ -2246,7 +2248,7 @@ h5 {
 
 p {
   margin-bottom: 0px;
-  color: var(--gray300-1490ec53);
+  color: var(--gray-800);
   font-size: 16px;
   line-height: 1.6;
 }
@@ -2255,17 +2257,4 @@ a {
   display: block;
   color: hsla(0, 0.00%, 100.00%, 1.00);
   text-decoration: underline;
-}
-
-a:hover {
-  color: var(--gray300-1490ec53);
-}
-
-.w-layout-grid {
-  display: grid;
-  grid-auto-columns: 1fr;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto auto;
-  grid-row-gap: 16px;
-  grid-column-gap: 16px;
 }

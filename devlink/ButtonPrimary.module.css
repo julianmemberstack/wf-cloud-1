@@ -1,0 +1,58 @@
+.button {
+  padding: 0.75rem 1.5rem;
+
+  border-radius: 2rem;
+
+  background-color: var(--brand-blue);
+
+  transition: box-shadow 200ms ease,background-color 200ms ease;
+
+  color: hsla(0, 0.00%, 100.00%, 1.00);
+  font-weight: 400;
+  text-align: center;
+  text-decoration: none;
+}
+
+.button:hover {
+  background-color: hsla(0, 0.00%, 28.00%, 1.00);
+  box-shadow: 0 9px 17px 0 hsla(0, 0.00%, 0.00%, 0.12);
+}
+
+.button.is-text {
+  border: 2px solid transparent;
+  background-color: transparent;
+  color: hsla(0, 0.00%, 0.00%, 1.00);
+}
+
+.button.is-small {
+  padding: 0.5rem 1.25rem;
+}
+
+.button.is-icon {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  grid-column-gap: 0.75rem;
+  grid-row-gap: 0.75rem;
+
+  text-decoration: none;
+}
+
+.button.is-secondary {
+  border: 1px solid #222;
+  background-color: transparent;
+  color: hsla(0, 0.00%, 0.00%, 1.00);
+}
+
+.button.is-large {
+  padding: 1rem 2rem;
+}
+
+.button.is-brand {
+  background-color: #2d62ff;
+}
+
+.button.is-brand:hover {
+  background-color: hsla(224.85714285714286, 78.57%, 49.28%, 1.00);
+}

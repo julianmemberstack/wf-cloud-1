@@ -4,6 +4,7 @@
 	"private": true,
 	"scripts": {
 		"dev": "next dev",
+		"dev:no-logs": "WRANGLER_LOG=false next dev",
 		"build": "next build",
 		"start": "next start",
 		"lint": "next lint",
@@ -12,9 +13,11 @@
 		"cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts"
 	},
 	"dependencies": {
+		"@memberstack/dom": "^1.9.40",
 		"next": "15.2.5",
 		"react": "^19.0.0",
-		"react-dom": "^19.0.0"
+		"react-dom": "^19.0.0",
+		"recharts": "^2.13.3"
 	},
 	"devDependencies": {
 		"@cloudflare/workers-types": "^4.20250415.0",

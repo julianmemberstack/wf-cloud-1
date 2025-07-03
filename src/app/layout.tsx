@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import "../../devlink/global.css";
 import { DevLinkProvider } from "../../devlink/DevLinkProvider";
+import { MemberstackProvider } from "../components/MemberstackProvider";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -32,9 +33,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} antialiased`}
+        className={`${inter.variable} antialiased`}
+        style={{ fontFamily: 'var(--font-inter)' }}
       >
-        <DevLinkProvider>{children}</DevLinkProvider>
+        <MemberstackProvider>
+          <DevLinkProvider>{children}</DevLinkProvider>
+        </MemberstackProvider>
       </body>
     </html>
   );
