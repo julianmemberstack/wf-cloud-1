@@ -1,11 +1,22 @@
 "use client";
 
-import { Section, Block, Container } from "../../devlink/_Builtin";
+import { Section, Container } from "../../devlink/_Builtin";
 import { ButtonPrimary } from "../../devlink/ButtonPrimary";
 import { useState, useEffect } from "react";
-import { PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip } from "recharts";
+import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from "recharts";
 import { useMemberstack } from "../components/MemberstackProvider";
 import { AuthModals } from "../components/AuthModals";
+
+interface MortgageRatesData {
+  frm_30?: string;
+  frm_15?: string;
+}
+
+interface ApiResponse {
+  success: boolean;
+  data?: MortgageRatesData;
+  error?: string;
+}
 
 export default function Home() {
   const { memberstack, member, loading } = useMemberstack();
@@ -19,11 +30,9 @@ export default function Home() {
     totalCost: number;
     chartData: Array<{ name: string; value: number; color: string }>;
   } | null>(null);
-  const [mortgageRates, setMortgageRates] = useState<any>(null);
-  const [loadingRates, setLoadingRates] = useState(false);
+  const [mortgageRates, setMortgageRates] = useState<MortgageRatesData | null>(null);
 
   const fetchMortgageRates = async () => {
-    setLoadingRates(true);
     try {
       const response = await fetch('/app/api/mortgage-rates');
       
@@ -31,7 +40,7 @@ export default function Home() {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       
-      const result = await response.json() as { success: boolean; data?: any; error?: string };
+      const result = await response.json() as ApiResponse;
       
       if (result.success && result.data) {
         setMortgageRates(result.data);
@@ -44,8 +53,6 @@ export default function Home() {
       console.error('Error fetching mortgage rates:', error);
       // Set fallback data for testing
       setMortgageRates({ frm_30: "6.95", frm_15: "6.12" });
-    } finally {
-      setLoadingRates(false);
     }
   };
 
@@ -132,14 +139,14 @@ export default function Home() {
               {loading ? (
                 <span>🔄 Loading Memberstack...</span>
               ) : memberstack ? (
-                <span>✅ Memberstack Connected | {member ? `Logged in as ${member.auth.email}` : 'No user logged in'}</span>
+                <span>✅ Memberstack Connected | {member ? 'User logged in' : 'No user logged in'}</span>
               ) : (
                 <span>❌ Memberstack not initialized</span>
               )}
             </div>
             
             {/* Auth Buttons */}
-            {memberstack && !loading && (
+            {memberstack !== null && !loading && (
               <AuthModals />
             )}
           </div>
@@ -234,7 +241,7 @@ export default function Home() {
                     {mortgageRates && mortgageRates.frm_30 && (
                       <button
                         type="button"
-                        onClick={() => setInterestRate(mortgageRates.frm_30.toString())}
+                        onClick={() => setInterestRate(mortgageRates.frm_30?.toString() || "")}
                         style={{
                           fontSize: "0.75rem",
                           padding: "4px 8px",
@@ -508,7 +515,7 @@ export default function Home() {
                     Ready to Calculate
                   </h3>
                   <p style={{ fontSize: "1rem", lineHeight: "1.5" }}>
-                    Enter your loan details and click "Calculate Total Cost" to see your mortgage breakdown with an interactive chart.
+                    Enter your loan details and click &quot;Calculate Total Cost&quot; to see your mortgage breakdown with an interactive chart.
                   </p>
                 </div>
               )}

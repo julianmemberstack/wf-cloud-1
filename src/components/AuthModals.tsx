@@ -43,16 +43,18 @@ export function AuthModals() {
     setError('');
     
     try {
-      const result = await memberstack.loginMemberEmailPassword({
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const result = await (memberstack as any).loginMemberEmailPassword({
         email: loginEmail,
         password: loginPassword,
       });
       
       console.log('Login successful:', result);
       closeModals();
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Login error:', error);
-      setError(error.message || 'Login failed. Please try again.');
+      const errorMessage = error instanceof Error ? error.message : 'Login failed. Please try again.';
+      setError(errorMessage);
     } finally {
       setIsLoading(false);
     }
@@ -66,16 +68,18 @@ export function AuthModals() {
     setError('');
     
     try {
-      const result = await memberstack.signupMemberEmailPassword({
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const result = await (memberstack as any).signupMemberEmailPassword({
         email: signupEmail,
         password: signupPassword,
       });
       
       console.log('Signup successful:', result);
       closeModals();
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Signup error:', error);
-      setError(error.message || 'Signup failed. Please try again.');
+      const errorMessage = error instanceof Error ? error.message : 'Signup failed. Please try again.';
+      setError(errorMessage);
     } finally {
       setIsLoading(false);
     }
@@ -84,7 +88,8 @@ export function AuthModals() {
   const logout = async () => {
     if (memberstack) {
       try {
-        await memberstack.logout();
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        await (memberstack as any).logout();
         console.log('User logged out successfully');
       } catch (error) {
         console.error('Error logging out:', error);

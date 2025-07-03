@@ -8,14 +8,16 @@ export function MemberstackExample() {
   // Show login modal
   const showLogin = () => {
     if (memberstack) {
-      memberstack.showModal('login');
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      (memberstack as any).openModal('LOGIN');
     }
   };
 
   // Show signup modal
   const showSignup = () => {
     if (memberstack) {
-      memberstack.showModal('signup');
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      (memberstack as any).openModal('SIGNUP');
     }
   };
 
@@ -23,7 +25,8 @@ export function MemberstackExample() {
   const logout = async () => {
     if (memberstack) {
       try {
-        await memberstack.logout();
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        await (memberstack as any).logout();
         console.log('User logged out successfully');
       } catch (error) {
         console.error('Error logging out:', error);
@@ -55,7 +58,7 @@ export function MemberstackExample() {
       {member ? (
         <div>
           <p style={{ marginBottom: '16px', color: '#4a5568' }}>
-            Welcome back, <strong>{member.auth.email}</strong>!
+            Welcome back, <strong>{member.auth?.email || 'User'}</strong>!
           </p>
           <button
             onClick={logout}

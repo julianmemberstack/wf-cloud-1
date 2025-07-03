@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Inter } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import "../../devlink/global.css";
 import { DevLinkProvider } from "../../devlink/DevLinkProvider";
@@ -8,16 +8,6 @@ import { MemberstackProvider } from "../components/MemberstackProvider";
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
-});
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
 });
 
 export const metadata: Metadata = {

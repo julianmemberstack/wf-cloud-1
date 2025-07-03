@@ -2,17 +2,24 @@
 
 import { createContext, useContext, useEffect, useState, ReactNode } from 'react';
 
+interface MemberData {
+  auth?: {
+    email?: string;
+  };
+  [key: string]: unknown;
+}
+
 interface MemberstackContextType {
-  memberstack: any;
-  member: any;
+  memberstack: unknown;
+  member: MemberData | null;
   loading: boolean;
 }
 
 const MemberstackContext = createContext<MemberstackContextType | undefined>(undefined);
 
 export function MemberstackProvider({ children }: { children: ReactNode }) {
-  const [memberstack, setMemberstack] = useState<any>(null);
-  const [member, setMember] = useState<any>(null);
+  const [memberstack, setMemberstack] = useState<unknown>(null);
+  const [member, setMember] = useState<MemberData | null>(null);
   const [loading, setLoading] = useState(true);
   const [isClient, setIsClient] = useState(false);
 
@@ -45,7 +52,8 @@ export function MemberstackProvider({ children }: { children: ReactNode }) {
         // Check current member
         const checkCurrentMember = async () => {
           try {
-            const { data: currentMember } = await ms.getCurrentMember();
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            const { data: currentMember } = await (ms as any).getCurrentMember();
             setMember(currentMember);
           } catch (error) {
             console.error('Error checking current member:', error);
@@ -57,7 +65,8 @@ export function MemberstackProvider({ children }: { children: ReactNode }) {
         checkCurrentMember();
 
         // Listen for auth changes
-        const authListener = ms.onAuthChange((currentMember: any) => {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const authListener = (ms as any).onAuthChange((currentMember: MemberData | null) => {
           setMember(currentMember);
         });
 
