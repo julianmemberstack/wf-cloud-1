@@ -19,7 +19,7 @@ interface ApiResponse {
 }
 
 export default function Home() {
-  const { memberstack, member, loading } = useMemberstack();
+  const { memberstack, member, loading, error } = useMemberstack();
   
   const [loanAmount, setLoanAmount] = useState("");
   const [interestRate, setInterestRate] = useState("");
@@ -138,6 +138,8 @@ export default function Home() {
             <div style={{ fontSize: "0.875rem", color: "#718096", marginBottom: "16px" }}>
               {loading ? (
                 <span>🔄 Loading Memberstack...</span>
+              ) : error ? (
+                <span>❌ Memberstack Error: {error}</span>
               ) : memberstack ? (
                 <span>✅ Memberstack Connected | {member ? 'User logged in' : 'No user logged in'}</span>
               ) : (
@@ -361,16 +363,29 @@ export default function Home() {
               </div>
 
               <div style={{ marginTop: "32px" }}>
-                <ButtonPrimary
-                  as="button"
-                  buttonText="Calculate Total Cost"
+                <button
                   onClick={calculateCosts}
                   style={{
                     width: "100%",
                     fontSize: "1.1rem",
-                    fontWeight: "600"
+                    fontWeight: "600",
+                    backgroundColor: "#667eea",
+                    color: "white",
+                    border: "none",
+                    padding: "16px 24px",
+                    borderRadius: "12px",
+                    cursor: "pointer",
+                    transition: "background-color 0.2s"
                   }}
-                />
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.backgroundColor = "#5a67d8";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.backgroundColor = "#667eea";
+                  }}
+                >
+                  Calculate Total Cost
+                </button>
               </div>
             </div>
 
