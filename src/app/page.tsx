@@ -140,7 +140,7 @@ export default function Home() {
               ) : error ? (
                 <span>❌ Memberstack Error: {error}</span>
               ) : memberstack ? (
-                <span>✅ Memberstack Connected | {member ? 'User logged in' : 'No user logged in'}</span>
+                <span>✅ Memberstack Connected | {member ? `Logged in as: ${member.auth?.email || 'Unknown user'}` : 'No user logged in'}</span>
               ) : (
                 <span>❌ Memberstack not initialized</span>
               )}
